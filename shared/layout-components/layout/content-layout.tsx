@@ -52,7 +52,7 @@ const ContentLayout = ({ children }:any) => {
             {children}
           </div>
         </div>
-        <Footer/>
+        {/*<Footer/>*/}
       </div>
       <Backtotop />
         </div>
