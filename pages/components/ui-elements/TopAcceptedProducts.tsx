@@ -72,7 +72,11 @@ export const TopAcceptedProducts = () => {
               <Link href="#">
                 <div className="flex items-center justify-between">
                   <div className="flex items-start justify-center">
-                    <img src={prod.image || '/default-product.png'} alt={prod.name} className="avatar avatar-md avatar-rounded !mb-0 me-2" />
+                    <img
+  src={prod.src ? prod.src : '/default-product.png'}
+  alt={prod.name}
+  className="avatar avatar-md avatar-rounded !mb-0 me-2"
+/>
                     <div>
                       <p className="mb-0 font-semibold">{prod.name}</p>
                       <p className="mb-0 text-[#8c9097] dark:text-white/50 text-[0.75rem]">

@@ -5,7 +5,7 @@ const Firebaselogin = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/components/dashboards/modelo/");
+    router.push("/dashboards/modelo/");
   }, [router]);
 
   return null;

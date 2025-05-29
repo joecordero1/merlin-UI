@@ -168,12 +168,12 @@ const Modelo = () => {
 
                                         <div className="text-[#8c9097] dark:text-white/50 mb-1 text-[0.75rem]">
                                             <span className="font-semibold text-[1.25rem] leading-none text-defaulttextcolor vertical-bottom">
-  {new Date(lastUpdated.date).toLocaleString('es-EC', {
-    dateStyle: 'long',
-    timeStyle: 'short',
-    hour12: true
-  })}
-</span>
+                                                {new Date(lastUpdated.date).toLocaleString('es-EC', {
+                                                    dateStyle: 'long',
+                                                    timeStyle: 'short',
+                                                    hour12: true
+                                                })}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

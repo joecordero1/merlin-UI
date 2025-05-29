@@ -43,7 +43,7 @@ export const MenuItems : any= [
 },
 
             {icon: DashboardIcon, badgetxt: badge, title: 'Dashboards', type: "sub", active: false, children: [
-                    {path: "/components/dashboards/modelo", type: "link", active: false, selected: false, title: "Modelo" },
+                    {path: "/dashboards/modelo", type: "link", active: false, selected: false, title: "Modelo" },
 
                 ]
             },
@@ -54,8 +54,8 @@ export const MenuItems : any= [
 },
 
             {icon: DashboardIcon, badgetxt: badge, title: 'Merlin', type: "sub", active: false, children: [
-                    {path: "/components/pages/merlin", type: "link", active: false, selected: false, title: "Merlin" },
-
+                    {path: "/merlin", type: "link", active: false, selected: false, title: "Merlin" },
+                    {path: "/merlinCatalogos", type: "link", active: false, selected: false, title: "Catalogos" },
                 ]
             },
        

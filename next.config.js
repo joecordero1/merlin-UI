@@ -1,16 +1,15 @@
-
-/**@type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
   reactStrictMode: true,
   trailingSlash: true,
   swcMinify: true,
-  basePath: "",
-  assetPrefix :"",
   images: {
-    loader: "imgix",
-    path: "/",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+      },
+    ],
   },
 };
 
