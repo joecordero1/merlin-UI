@@ -44,7 +44,7 @@ export const MenuItems : any= [
 
             {icon: DashboardIcon, badgetxt: badge, title: 'Dashboards', type: "sub", active: false, children: [
                     {path: "/dashboards/modelo", type: "link", active: false, selected: false, title: "Modelo" },
-
+                    {path: "/dashboards/historial", type: "link", active: false, selected: false, title: "Historial" },
                 ]
             },
        

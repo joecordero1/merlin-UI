@@ -1,55 +1,79 @@
-// components/ProductsOverviewExport.tsx
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DataTable from 'react-data-table-component';
-import { saveAs } from 'file-saver';
-import Papa from 'papaparse';
+import Image from 'next/image';
 
 interface Product {
-  name: string;
-  suggestedCount: number;
-  image: string;
+  id: number;
+  productName: string;
+  imageUrl: string;
+  price: number;
+  points: number;
 }
 
-const ProductsOverviewExport = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+interface Props {
+  products: Product[];
+  onDeleteProduct: (id: number) => void;
+}
 
-  useEffect(() => {
-    fetch('http://localhost:4000/api/top-suggested?filter=month')
-      .then((res) => res.json())
-      .then(setProducts);
-  }, []);
+
+const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) => {
 
   const columns = [
     {
       name: 'Imagen',
-      selector: (row: Product) => <img src={row.src} className="w-10 h-10" alt={row.name} />,
+      selector: (row: Product) => (
+        <div className="w-10 h-10 relative">
+          <Image
+            src={row.imageUrl}
+            alt={row.productName}
+            layout="fill"
+            objectFit="cover"
+            className="rounded"
+          />
+        </div>
+      ),
       sortable: false,
     },
     {
       name: 'Nombre',
-      selector: (row: Product) => row.name,
+      selector: (row: Product) => row.productName,
       sortable: true,
     },
     {
-      name: 'Sugerencias',
-      selector: (row: Product) => row.suggestedCount,
+      name: 'Precio',
+      selector: (row: Product) => `$${row.price.toFixed(2)}`,
       sortable: true,
     },
+    {
+      name: 'Puntos',
+      selector: (row: Product) => row.points,
+      sortable: true,
+    },
+    {
+      name: 'Acciones',
+      cell: (row: Product) => (
+        <div className="flex flex-row items-center gap-2 text-sm">
+          <button
+            className="ti-btn ti-btn-wave h-[1.75rem] w-[1.75rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
+            title="Eliminar"
+            onClick={() => onDeleteProduct(row.id)}
+          >
+            <i className="ri-delete-bin-line"></i>
+          </button>
+        </div>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
+    },
   ];
-
-  const exportCSV = () => {
-    const csv = Papa.unparse(products);
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    saveAs(blob, 'productos_sugeridos.csv');
-  };
 
   return (
     <div className="box">
       <div className="box-header justify-between">
         <div className="box-title">Productos Más Sugeridos</div>
-        <button onClick={exportCSV} className="ti-btn bg-primary text-white">
-          Exportar CSV
+        <button onClick={() => console.log('Exportar CSV')} className="ti-btn bg-primary text-white">
+          Guardar Catálogo
         </button>
       </div>
       <DataTable
@@ -63,4 +87,4 @@ const ProductsOverviewExport = () => {
   );
 };
 
-export default ProductsOverviewExport;
+export default ProductsOverviewTable;
