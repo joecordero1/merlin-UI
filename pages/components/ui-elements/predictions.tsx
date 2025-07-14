@@ -3,20 +3,30 @@ import { useEffect, useState } from 'react';
 import { ApexOptions } from 'apexcharts';
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
-
-export const Predictions = () => {
+interface Props { model: 'bert' | 'dnn'; }
+export const Predictions: React.FC<Props> = ({ model }) => {
   const [type, setType] = useState('month');
   const [series, setSeries] = useState([{ name: 'Total Orders', data: [] }]);
   const [categories, setCategories] = useState<string[]>([]);
 
+  // 👉 Etiquetas legibles   clave => texto
+  const LABELS: Record<string, string> = {
+    today: 'Hoy',
+    week: 'Semana Actual',
+    lastWeek: 'Semana Pasada',
+    currentMonth: 'Mes Actual',
+    month: 'Mensual'
+  };
+
   useEffect(() => {
-    fetch(`http://localhost:4000/api/earning-chart?type=${type}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setSeries([{ name: 'Total Orders', data: data.values }]);
-        setCategories(data.labels);
-      });
-  }, [type]);
+    fetch(`http://localhost:4000/api/${model}/earning-chart?type=${type}`)
+      .then((r) => r.json())
+      .then(({ values, labels }) => {
+        setSeries([{ name: 'Total', data: values }]);
+        setCategories(labels);
+      })
+      .catch(console.error);
+  }, [model, type]);
 
   const options: ApexOptions = {
     chart: { type: 'bar', height: 200 },

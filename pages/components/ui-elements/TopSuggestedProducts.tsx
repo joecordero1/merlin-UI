@@ -8,27 +8,49 @@ const filterOptions = [
   { label: 'Este mes', value: 'month' },
   { label: 'Personalizado', value: 'custom' },
 ];
-
-export const TopSuggestedProducts = () => {
+interface Props { model: 'bert' | 'dnn'; }
+export const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
   const [filter, setFilter] = useState('today');
-  const [products, setProducts] = useState<any[]>([]);
-  const [customStart, setCustomStart] = useState('2024-05-01');
-  const [customEnd, setCustomEnd] = useState('2024-05-15');
+  const [products, setProducts1] = useState<any[]>([]);
+  const [products2, setProducts2] = useState<any[]>([]);
+  const [customStart, setCustomStart] = useState('2025-06-01');
+  const [customEnd, setCustomEnd] = useState('2025-06-15');
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:4000/api/top-suggested?filter=${filter}`;
-      if (filter === 'custom') {
-        url += `&start=${customStart}&end=${customEnd}`;
-      }
+      try {
+        if (!model) {
+          console.warn('Modelo no definido');
+          return;
+        }
 
-      const res = await fetch(url);
-      const data = await res.json();
-      setProducts(data.slice(0, 5));
+        let url = `http://localhost:4000/api/${model}/top-suggested?filter=${filter}`;
+        if (filter === 'custom') {
+          url += `&start=${customStart}&end=${customEnd}`;
+        }
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!Array.isArray(data)) {
+          console.error('Respuesta inesperada:', data);
+          setProducts1([]);
+          setProducts2([]);
+          return;
+        }
+
+        setProducts1(data.slice(0, 5));
+        setProducts2(data.slice(5, 10));
+      } catch (err) {
+        console.error('Error en fetch:', err);
+        setProducts1([]);
+        setProducts2([]);
+      }
     };
 
     fetchProducts();
-  }, [filter, customStart, customEnd]);
+  }, [model, filter, customStart, customEnd]);
+
 
   return (
     <div className="box">
@@ -73,10 +95,10 @@ export const TopSuggestedProducts = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-start justify-center">
                     <img
-  src={prod.src ? prod.src : '/default-product.png'}
-  alt={prod.name}
-  className="avatar avatar-md avatar-rounded !mb-0 me-2"
-/>
+                      src={prod.src ? prod.src : '/default-product.png'}
+                      alt={prod.name}
+                      className="avatar avatar-md avatar-rounded !mb-0 me-2"
+                    />
                     <div>
                       <p className="mb-0 font-semibold">{prod.name}</p>
                       <p className="mb-0 text-[#8c9097] dark:text-white/50 text-[0.75rem]">

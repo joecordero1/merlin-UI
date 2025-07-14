@@ -9,26 +9,48 @@ const filterOptions = [
   { label: 'Personalizado', value: 'custom' },
 ];
 
-export const TopAcceptedProducts = () => {
+interface Props { model: 'bert' | 'dnn'; }
+export const TopAcceptedProducts: React.FC<Props> = ({ model }) => {
   const [filter, setFilter] = useState('today');
-  const [products, setProducts] = useState<any[]>([]);
-  const [customStart, setCustomStart] = useState('2024-05-01');
-  const [customEnd, setCustomEnd] = useState('2024-05-15');
+  const [products, setProducts1] = useState<any[]>([]);
+  const [products2, setProducts2] = useState<any[]>([]);
+  const [customStart, setCustomStart] = useState('2025-06-01');
+  const [customEnd, setCustomEnd] = useState('2025-06-15');
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:4000/api/top-accepted?filter=${filter}`;
-      if (filter === 'custom') {
-        url += `&start=${customStart}&end=${customEnd}`;
-      }
+      try {
+        if (!model) {
+          console.warn('Modelo no definido');
+          return;
+        }
 
-      const res = await fetch(url);
-      const data = await res.json();
-      setProducts(data.slice(0, 5));
+        let url = `http://localhost:4000/api/${model}/top-accepted?filter=${filter}`;
+        if (filter === 'custom') {
+          url += `&start=${customStart}&end=${customEnd}`;
+        }
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!Array.isArray(data)) {
+          console.error('Respuesta inesperada:', data);
+          setProducts1([]);
+          setProducts2([]);
+          return;
+        }
+
+        setProducts1(data.slice(0, 5));
+        setProducts2(data.slice(5, 10));
+      } catch (err) {
+        console.error('Error en fetch:', err);
+        setProducts1([]);
+        setProducts2([]);
+      }
     };
 
     fetchProducts();
-  }, [filter, customStart, customEnd]);
+  }, [model, filter, customStart, customEnd]);
 
   return (
     <div className="box">

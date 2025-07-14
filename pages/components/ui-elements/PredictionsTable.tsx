@@ -23,7 +23,12 @@ const PredictionsTable: React.FC<Props> = ({ predicciones }) => {
         },
         {
             name: 'Fecha',
-            selector: (row: Prediccion) => new Date(row.fecha).toLocaleString(),
+            selector: (row: Prediccion) => new Date(row.fecha).toLocaleDateString('es-EC', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}),
+
             sortable: true,
         },
         {

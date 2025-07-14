@@ -6,9 +6,9 @@ import Image from 'next/image';
 import ProductsOverviewTable from './components/ui-elements/ProductsOverviewTable';
 
 const suggestedPrompts = [
-  "Productos con mayor tasa de conversión en enero",
-  "Muéstrame el desempeño de los recomendados",
-  "Categorías con más conversiones"
+  "Productos mas recomendados de este mes",
+  "Muéstrame los productos aceptados del mes actual",
+  "Categorías con más aceptaciones"
 ];
 
 
@@ -49,7 +49,14 @@ const Merlin = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4000/api/chat-productos", {
+      
+    /*fetch("http://localhost:4000/api/list-predictions")/*/  
+      /*const response = await fetch("http://localhost:4000/api/chat-productos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: input }),
+      });*/
+      const response = await fetch("http://localhost:5020/api/merlin-recommender/chat  ", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: input }),
