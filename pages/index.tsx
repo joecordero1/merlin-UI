@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const Firebaselogin = () => {
-  const router = useRouter();
+	const router = useRouter();
 
-  useEffect(() => {
-    router.push("/dashboards/modelo/");
-  }, [router]);
+	useEffect(() => {
+		router.push("/dashboards/modelo/");
+	}, [router]);
 
-  return null;
+	return null;
 };
 
 export default Firebaselogin;

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { basePath } from "@/next.config";
 import store from "@/shared/redux/store";
-import SimpleBar from 'simplebar-react';
+import SimpleBar from "simplebar-react";
 import Menuloop from "./menuloop";
 
 const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
@@ -32,25 +32,25 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 				const theme = store.getState();
 				ThemeChanger({ ...theme, dataToggled: "close" });
 			}
-			else if (document.documentElement.getAttribute('data-nav-layout') == 'horizontal') {
+			else if (document.documentElement.getAttribute("data-nav-layout") == "horizontal") {
 				closeMenu();
 			}
 		}
-		mainContent!.addEventListener('click', menuClose);
-		window.addEventListener('resize', menuResizeFn);
+		mainContent!.addEventListener("click", menuClose);
+		window.addEventListener("resize", menuResizeFn);
 	}, []);
 
 	const location = useRouter();
 
 	function Onhover() {
 		const theme = store.getState();
-		if ((theme.dataToggled == 'icon-overlay-close' || theme.dataToggled == 'detached-close') && theme.iconOverlay != 'open') {
+		if ((theme.dataToggled == "icon-overlay-close" || theme.dataToggled == "detached-close") && theme.iconOverlay != "open") {
 		  ThemeChanger({ ...theme, "iconOverlay": "open" });
 		}
 	  }
 	  function Outhover() {
 		const theme = store.getState();
-		if ((theme.dataToggled == 'icon-overlay-close' || theme.dataToggled == 'detached-close') && theme.iconOverlay == 'open') {
+		if ((theme.dataToggled == "icon-overlay-close" || theme.dataToggled == "detached-close") && theme.iconOverlay == "open") {
 		  ThemeChanger({ ...theme, "iconOverlay": "" });
 		}
 	  }
@@ -69,38 +69,38 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 		}
 	}
 
-	const WindowPreSize = typeof window !== 'undefined' ? [window.innerWidth] : [];
+	const WindowPreSize = typeof window !== "undefined" ? [window.innerWidth] : [];
 
 	function menuResizeFn() {
-	  if (typeof window === 'undefined') {
-	// Handle the case where window is not available (server-side rendering)
-	return;
+	  if (typeof window === "undefined") {
+			// Handle the case where window is not available (server-side rendering)
+			return;
 	  }
 	
 	  WindowPreSize.push(window.innerWidth);
-	  if (WindowPreSize.length > 2) { WindowPreSize.shift() }
+	  if (WindowPreSize.length > 2) { WindowPreSize.shift(); }
 	
 	  const theme = store.getState();
 	  const currentWidth = WindowPreSize[WindowPreSize.length - 1];
 	  const prevWidth = WindowPreSize[WindowPreSize.length - 2];
 	
-	  console.log('Current Width:', currentWidth);
-	  console.log('Previous Width:', prevWidth);
-	  console.log('Current dataVerticalStyle:', theme.dataVerticalStyle);
+	  console.log("Current Width:", currentWidth);
+	  console.log("Previous Width:", prevWidth);
+	  console.log("Current dataVerticalStyle:", theme.dataVerticalStyle);
 	
 	  if (WindowPreSize.length > 1) {
-	if (currentWidth < 992 && prevWidth >= 992) {
+			if (currentWidth < 992 && prevWidth >= 992) {
 	  // less than 992;
-	  console.log('Width is less than 992');
+	  console.log("Width is less than 992");
 	  ThemeChanger({ ...theme, dataToggled: "close" });
-	}
+			}
 	
-	if (currentWidth >= 992 && prevWidth < 992) {
+			if (currentWidth >= 992 && prevWidth < 992) {
 	  // greater than 992
-	  console.log('Width is greater than or equal to 992');
-	  console.log('Current dataVerticalStyle:', theme.dataVerticalStyle);
+	  console.log("Width is greater than or equal to 992");
+	  console.log("Current dataVerticalStyle:", theme.dataVerticalStyle);
 	  ThemeChanger({ ...theme, dataToggled: theme.dataVerticalStyle === "doublemenu" ? "double-menu-open" : "" });
-	}
+			}
 	  }
 	}
 
@@ -261,7 +261,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 	}
 
 	const Topup = () => {
-		if (typeof window !== 'undefined') {
+		if (typeof window !== "undefined") {
 			if (window.scrollY > 30 && document.querySelector(".app-sidebar")) {
 				const Scolls = document.querySelectorAll(".app-sidebar");
 				Scolls.forEach((e) => {
@@ -275,10 +275,9 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 			}
 		}
 	};
-	if (typeof window !== 'undefined') {
+	if (typeof window !== "undefined") {
 		window.addEventListener("scroll", Topup);
 	}
-
 
 	const level = 0;
 	let hasParent = false;
@@ -315,10 +314,10 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 	function getParentObject(obj: any, childObject: any) {
 		for (const key in obj) {
 			if (obj.hasOwnProperty(key)) {
-				if (typeof obj[key] === 'object' && JSON.stringify(obj[key]) === JSON.stringify(childObject)) {
+				if (typeof obj[key] === "object" && JSON.stringify(obj[key]) === JSON.stringify(childObject)) {
 					return obj; // Return the parent object
 				}
-				if (typeof obj[key] === 'object') {
+				if (typeof obj[key] === "object") {
 					const parentObject: any = getParentObject(obj[key], childObject);
 					if (parentObject !== null) {
 						return parentObject;
@@ -342,7 +341,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 			setMenuAncestorsActive(parent);
 		}
 		else if (!hasParent) {
-			if (theme.dataVerticalStyle == 'doublemenu') {
+			if (theme.dataVerticalStyle == "doublemenu") {
 				ThemeChanger({ ...theme, dataToggled: "double-menu-close" });
 			}
 		}
@@ -375,7 +374,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 		const setSubmenuRecursively = (items: any) => {
 
 			items?.forEach((item: any) => {
-				if (item.path == '') { }
+				if (item.path == "") { }
 				else if (item.path === currentPath) {
 					setSubmenu(null, item);
 				}
@@ -399,7 +398,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
 		// Start observing the target element
 		observer.observe(targetElement, config);
-		let currentPath = location.pathname.endsWith("/") ? location.pathname.slice(0, -1) : location.pathname;
+		const currentPath = location.pathname.endsWith("/") ? location.pathname.slice(0, -1) : location.pathname;
 		if (currentPath !== previousUrl) {
 			setMenuUsingUrl(currentPath);
 			setPreviousUrl(currentPath);
@@ -408,24 +407,24 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
 	function toggleSidemenu(event: any, targetObject: any, MenuItems = menuitems) {
 		const theme = store.getState();
-		let element = event.target;
+		const element = event.target;
 
 		// if ((window.screen.availWidth <= 992 || theme.dataNavStyle != "icon-hover") && (window.screen.availWidth <= 992 || theme.dataNavStyle != "menu-hover")) {
-			if (
-				(theme.dataNavStyle !== "icon-hover" && theme.dataNavStyle !== "menu-hover") ||
+		if (
+			(theme.dataNavStyle !== "icon-hover" && theme.dataNavStyle !== "menu-hover") ||
 				window.innerWidth < 992 ||
 				(theme.dataNavLayout !== "horizontal" &&
 				  (theme.dataToggled !== "icon-hover-closed" && theme.dataToggled !== "menu-hover-closed"))
 			  ) {
 			for (const item of MenuItems) {
 				if (item === targetObject) {
-					if (theme.dataVerticalStyle == 'doublemenu' && item.active) { return; }
+					if (theme.dataVerticalStyle == "doublemenu" && item.active) { return; }
 					item.active = !item.active;
 
 					if (item.active) {
 						closeOtherMenus(MenuItems, item);
 					} else {
-						if (theme.dataVerticalStyle == 'doublemenu') {
+						if (theme.dataVerticalStyle == "doublemenu") {
 							ThemeChanger({ ...theme, dataToggled: "double-menu-close" });
 						}
 					}
@@ -433,7 +432,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
 				}
 				else if (!item.active) {
-					if (theme.dataVerticalStyle != 'doublemenu') {
+					if (theme.dataVerticalStyle != "doublemenu") {
 						item.active = false; // Set active to false for items not matching the target
 					}
 				}
@@ -442,27 +441,27 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 				}
 			}
 			if (targetObject?.children && targetObject.active) {
-				if (theme.dataVerticalStyle == 'doublemenu' && theme.dataToggled != 'double-menu-open') {
+				if (theme.dataVerticalStyle == "doublemenu" && theme.dataToggled != "double-menu-open") {
 					ThemeChanger({ ...theme, dataToggled: "double-menu-open" });
 				}
 			}
-			if (element && theme.dataNavLayout == 'horizontal' && (theme.dataNavStyle == 'menu-click' || theme.dataNavStyle == 'icon-click')) {
+			if (element && theme.dataNavLayout == "horizontal" && (theme.dataNavStyle == "menu-click" || theme.dataNavStyle == "icon-click")) {
 				const listItem = element.closest("li");
 				if (listItem) {
 					// Find the first sibling <ul> element
 					const siblingUL = listItem.querySelector("ul");
 					let outterUlWidth = 0;
-					let listItemUL = listItem.closest('ul:not(.main-menu)');
+					let listItemUL = listItem.closest("ul:not(.main-menu)");
 					while (listItemUL) {
-						listItemUL = listItemUL.parentElement.closest('ul:not(.main-menu)');
+						listItemUL = listItemUL.parentElement.closest("ul:not(.main-menu)");
 						if (listItemUL) {
 							outterUlWidth += listItemUL.clientWidth;
 						}
 					}
 					if (siblingUL) {
 						// You've found the sibling <ul> element
-						let siblingULRect = listItem.getBoundingClientRect();
-						if (theme.dir == 'rtl') {
+						const siblingULRect = listItem.getBoundingClientRect();
+						if (theme.dir == "rtl") {
 							if ((siblingULRect.left - siblingULRect.width - outterUlWidth + 150 < 0 && outterUlWidth < window.innerWidth) && (outterUlWidth + siblingULRect.width + siblingULRect.width < window.innerWidth)) {
 								targetObject.dirchange = true;
 							} else {
@@ -477,10 +476,10 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 						}
 					}
 					setTimeout(() => {
-						let computedValue = siblingUL.getBoundingClientRect();
+						const computedValue = siblingUL.getBoundingClientRect();
 						if ((computedValue.bottom) > window.innerHeight) {
-							siblingUL.style.height = (window.innerHeight - computedValue.top - 8) + 'px';
-							siblingUL.style.overflow = 'auto';
+							siblingUL.style.height = (window.innerHeight - computedValue.top - 8) + "px";
+							siblingUL.style.overflow = "auto";
 						}
 					}, 100);
 				}
@@ -533,20 +532,20 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 
 	const Sideclick = () => {
 		if (window.innerWidth > 992) {
-			let html = document.documentElement;
-			if (html.getAttribute('icon-overlay') != 'open') {
-				html.setAttribute('icon-overlay', 'open');
+			const html = document.documentElement;
+			if (html.getAttribute("icon-overlay") != "open") {
+				html.setAttribute("icon-overlay", "open");
 			}
 		}
 	};
 
 	function handleAttributeChange(mutationsList: any) {
 		for (const mutation of mutationsList) {
-			if (mutation.type === 'attributes' && mutation.attributeName === 'data-nav-layout') {
-				const newValue = mutation.target.getAttribute('data-nav-layout');
-				if (newValue == 'vertical') {
-					let currentPath = location.pathname.endsWith('/') ? location.pathname.slice(0, -1) : location.pathname;
-					currentPath = !currentPath ? '/dashboard/ecommerce' : currentPath;
+			if (mutation.type === "attributes" && mutation.attributeName === "data-nav-layout") {
+				const newValue = mutation.target.getAttribute("data-nav-layout");
+				if (newValue == "vertical") {
+					let currentPath = location.pathname.endsWith("/") ? location.pathname.slice(0, -1) : location.pathname;
+					currentPath = !currentPath ? "/dashboard/ecommerce" : currentPath;
 					setMenuUsingUrl(currentPath);
 				} else {
 					closeMenu();
@@ -582,40 +581,40 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
 							</svg></div>
 
 							<ul className="main-menu" onClick={() => Sideclick()}>
-							{MenuItems.map((levelone: any) => (
-								<Fragment key={Math.random()}>
-									<li className={`${levelone.menutitle ? 'slide__category' : ''} ${levelone.type === 'link' ? 'slide' : ''}
-                       ${levelone.type === 'sub' ? 'slide has-sub' : ''} ${levelone?.active ? 'open' : ''} ${levelone?.selected ? 'active' : ''}`}>
-										{levelone.menutitle ?
-											<span className='category-name'>
-												{levelone.menutitle}
-											</span>
-											: ""}
-										{levelone.type === "link" ?
-											<Link href={levelone.path + "/"} className={`side-menu__item ${levelone.selected ? 'active' : ''}`} >{levelone.icon}
-												<span className="side-menu__label">{levelone.title} {levelone.badgetxt ? (<span className={levelone.class}> {levelone.badgetxt}</span>
+								{MenuItems.map((levelone: any) => (
+									<Fragment key={Math.random()}>
+										<li className={`${levelone.menutitle ? "slide__category" : ""} ${levelone.type === "link" ? "slide" : ""}
+                       ${levelone.type === "sub" ? "slide has-sub" : ""} ${levelone?.active ? "open" : ""} ${levelone?.selected ? "active" : ""}`}>
+											{levelone.menutitle ?
+												<span className='category-name'>
+													{levelone.menutitle}
+												</span>
+												: ""}
+											{levelone.type === "link" ?
+												<Link href={levelone.path + "/"} className={`side-menu__item ${levelone.selected ? "active" : ""}`} >{levelone.icon}
+													<span className="side-menu__label">{levelone.title} {levelone.badgetxt ? (<span className={levelone.class}> {levelone.badgetxt}</span>
 													) : (
 														""
 													)}
+													</span>
+												</Link>
+												: ""}
+											{levelone.type === "empty" ?
+												<Link href="#" className='side-menu__item'>{levelone.icon}<span className=""> {levelone.title} {levelone.badgetxt ? (
+													<span className={levelone.class}>{levelone.badgetxt} </span>
+												) : (
+													""
+												)}
 												</span>
-											</Link>
-											: ""}
-										{levelone.type === "empty" ?
-											<Link href="#" className='side-menu__item'>{levelone.icon}<span className=""> {levelone.title} {levelone.badgetxt ? (
-														<span className={levelone.class}>{levelone.badgetxt} </span>
-													) : (
-														""
-													)}
-												</span>
-											</Link>
-											: ""}
-										{levelone.type === "sub" ?
-											<Menuloop MenuItems={levelone} level={level + 1} toggleSidemenu={toggleSidemenu} />
-											: ''}
-									</li>
-								</Fragment>
-							))}
-						</ul>
+												</Link>
+												: ""}
+											{levelone.type === "sub" ?
+												<Menuloop MenuItems={levelone} level={level + 1} toggleSidemenu={toggleSidemenu} />
+												: ""}
+										</li>
+									</Fragment>
+								))}
+							</ul>
 
 							<div className="slide-right" onClick={() => { slideRight(); }} id="slide-right">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>

@@ -1,4 +1,4 @@
-import { FC, SVGAttributes } from 'react';
+import { FC, SVGAttributes } from "react";
 
 interface TablerIconProps extends SVGAttributes<SVGElement> { color?: string; size?: string | number; stroke?: string | number; }
 

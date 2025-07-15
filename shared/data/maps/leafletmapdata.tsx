@@ -59,102 +59,100 @@ function Leafletmapss() {
 	return (
 		<div>
 		 <Pageheader currentpage="Leafletmap" activepage="Maps" mainpage="Leafletmap" />
-    <div className="grid grid-cols-12 gap-x-6">
-<div className="xl:col-span-6 col-span-12">
-    <div className="box custom-box">
-        <div className="box-header">
-            <div className="box-title">Leaflet Map</div>
-        </div>
-        <div className="box-body">
-            <div id="map">
-            <MapContainer center={position} zoom={13} scrollWheelZoom={true} className='mapleaflet ht-300' id="leaflet1" style={{ height: "300px" }}>
-      <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-    </MapContainer>
-            </div>
-        </div>
-    </div>
-</div>
-<div className="xl:col-span-6 col-span-12">
-    <div className="box custom-box">
-        <div className="box-header">
-            <div className="box-title">Map With Markers,Circes and Polygons</div>
-        </div>
-        <div className="box-body">
-            <div id="map1">
-            <MapContainer center={center} zoom={13} scrollWheelZoom={true} className="ht-200 ht-sm-300 ht-md-400 popup-map" id="leaflet3" style={{ height: "300px" }}>
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-                                    <Circle center={center} pathOptions={fillBlueOptions} radius={200} />
-                                    <CircleMarker
-                                        center={[51.51, -0.12]}
-                                        pathOptions={redOptions}
-                                        radius={20}
-                                    >
-                                        <Popup>Popup in CircleMarker</Popup>
-                                    </CircleMarker>
-                                    <Polyline pathOptions={limeOptions} positions={polyline} />
-                                    <Polyline pathOptions={limeOptions} positions={multiPolyline} />
-                                    <Polygon pathOptions={purpleOptions} positions={polygon} />
-                                    <Polygon pathOptions={purpleOptions} positions={multiPolygon} />
-                                    <Rectangle bounds={rectangle} pathOptions={blackOptions} />
-                                </MapContainer>
-            </div>
-        </div>
-    </div>
-</div>
-<div className="xl:col-span-6 col-span-12">
-    <div className="box custom-box">
-        <div className="box-header">
-            <div className="box-title">Map With Popup</div>
-        </div>
-        <div className="box-body">
-            <div id="map-popup">
-            <MapContainer center={center} zoom={13} scrollWheelZoom={true} className="ht-300 circle-map" id="leaflet2" style={{ height: "300px" }}>
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-                                    <CircleMarker
-                                        center={[51.51, -0.12]}
-                                        pathOptions={redOptions}
-                                        radius={20}
-                                    >
+			<div className="grid grid-cols-12 gap-x-6">
+				<div className="xl:col-span-6 col-span-12">
+					<div className="box custom-box">
+						<div className="box-header">
+							<div className="box-title">Leaflet Map</div>
+						</div>
+						<div className="box-body">
+							<div id="map">
+								<MapContainer center={position} zoom={13} scrollWheelZoom={true} className='mapleaflet ht-300' id="leaflet1" style={{ height: "300px" }}>
+									<TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+										url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+									/>
+								</MapContainer>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="xl:col-span-6 col-span-12">
+					<div className="box custom-box">
+						<div className="box-header">
+							<div className="box-title">Map With Markers,Circes and Polygons</div>
+						</div>
+						<div className="box-body">
+							<div id="map1">
+								<MapContainer center={center} zoom={13} scrollWheelZoom={true} className="ht-200 ht-sm-300 ht-md-400 popup-map" id="leaflet3" style={{ height: "300px" }}>
+									<TileLayer
+										attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+										url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+									/>
+									<Circle center={center} pathOptions={fillBlueOptions} radius={200} />
+									<CircleMarker
+										center={[51.51, -0.12]}
+										pathOptions={redOptions}
+										radius={20}
+									>
+										<Popup>Popup in CircleMarker</Popup>
+									</CircleMarker>
+									<Polyline pathOptions={limeOptions} positions={polyline} />
+									<Polyline pathOptions={limeOptions} positions={multiPolyline} />
+									<Polygon pathOptions={purpleOptions} positions={polygon} />
+									<Polygon pathOptions={purpleOptions} positions={multiPolygon} />
+									<Rectangle bounds={rectangle} pathOptions={blackOptions} />
+								</MapContainer>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="xl:col-span-6 col-span-12">
+					<div className="box custom-box">
+						<div className="box-header">
+							<div className="box-title">Map With Popup</div>
+						</div>
+						<div className="box-body">
+							<div id="map-popup">
+								<MapContainer center={center} zoom={13} scrollWheelZoom={true} className="ht-300 circle-map" id="leaflet2" style={{ height: "300px" }}>
+									<TileLayer
+										attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+										url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+									/>
+									<CircleMarker
+										center={[51.51, -0.12]}
+										pathOptions={redOptions}
+										radius={20}
+									>
 
-                                        <Popup >Popup in CircleMarker</Popup>
+										<Popup >Popup in CircleMarker</Popup>
 
-                                    </CircleMarker>
-                                </MapContainer>
-            </div>
-        </div>
-    </div>
-</div>
-<div className="xl:col-span-6 col-span-12">
-    <div className="box custom-box">
-        <div className="box-header">
-            <div className="box-title">Map With Custom Icon</div>
-        </div>
-        <div className="box-body">
-            <div id="map-custom-icon">
-            <MapContainer center={position} zoom={13} scrollWheelZoom={true} className='mapleaflet ht-300' id="interactive-map" style={{ height: "300px" }}>
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-                                </MapContainer>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+									</CircleMarker>
+								</MapContainer>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="xl:col-span-6 col-span-12">
+					<div className="box custom-box">
+						<div className="box-header">
+							<div className="box-title">Map With Custom Icon</div>
+						</div>
+						<div className="box-body">
+							<div id="map-custom-icon">
+								<MapContainer center={position} zoom={13} scrollWheelZoom={true} className='mapleaflet ht-300' id="interactive-map" style={{ height: "300px" }}>
+									<TileLayer
+										attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+										url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+									/>
+								</MapContainer>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
-
-
 
 export default Leafletmapss;
 

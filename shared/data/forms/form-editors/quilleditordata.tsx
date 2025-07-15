@@ -29,58 +29,58 @@ interface EditorState {
 }
 
 class Editor extends Component<EditorProps, EditorState> {
-  static modules = {
-    toolbar: [
-      [{ "header": "1" }, { "header": "2" }, { "font": [] }],
-      [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ "list": "ordered" }, { "list": "bullet" },
-      { "indent": "-1" }, { "indent": "+1" }],
-      ["link", "image", "video"],
-      ["clean"]
-    ],
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false,
-    }
-  };
+	static modules = {
+		toolbar: [
+			[{ "header": "1" }, { "header": "2" }, { "font": [] }],
+			[{ size: [] }],
+			["bold", "italic", "underline", "strike", "blockquote"],
+			[{ "list": "ordered" }, { "list": "bullet" },
+				{ "indent": "-1" }, { "indent": "+1" }],
+			["link", "image", "video"],
+			["clean"]
+		],
+		clipboard: {
+			// toggle to add extra line breaks when pasting HTML:
+			matchVisual: false,
+		}
+	};
 
-  static formats = [
-    "header", "font", "size",
-    "bold", "italic", "underline", "strike", "blockquote",
-    "list", "bullet", "indent",
-    "link", "image", "video"
-  ];
+	static formats = [
+		"header", "font", "size",
+		"bold", "italic", "underline", "strike", "blockquote",
+		"list", "bullet", "indent",
+		"link", "image", "video"
+	];
 
-  constructor(props: EditorProps) {
-    super(props);
-    this.state = { editorHtml: defaultContent, theme: "snow" };
-    this.handleChange = this.handleChange.bind(this);
-  }
+	constructor(props: EditorProps) {
+		super(props);
+		this.state = { editorHtml: defaultContent, theme: "snow" };
+		this.handleChange = this.handleChange.bind(this);
+	}
 
-  handleChange(html: any) {
-    this.setState({ editorHtml: html });
-  }
+	handleChange(html: any) {
+		this.setState({ editorHtml: html });
+	}
 
-  handleThemeChange(newTheme: any) {
-    this.setState({ theme: newTheme });
-  }
+	handleThemeChange(newTheme: any) {
+		this.setState({ theme: newTheme });
+	}
 
-  render() {
-    return (
-      <div>
-        <ReactQuill
-          theme={this.state.theme}
-          onChange={this.handleChange}
-          value={this.state.editorHtml}
-          modules={Editor.modules}
-          formats={Editor.formats}
-          bounds={".app"}
-          placeholder={this.props.placeholder || ''}
-        />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<ReactQuill
+					theme={this.state.theme}
+					onChange={this.handleChange}
+					value={this.state.editorHtml}
+					modules={Editor.modules}
+					formats={Editor.formats}
+					bounds={".app"}
+					placeholder={this.props.placeholder || ""}
+				/>
+			</div>
+		);
+	}
 }
 
 export default Editor;

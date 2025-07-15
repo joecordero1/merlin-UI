@@ -21,57 +21,57 @@ const defaultContent = `
 `;
 
 const Editor1: React.FC = () => {
-  const [editorHtml, setEditorHtml] = useState<string>(defaultContent);
-  const [theme, setTheme] = useState<string>("snow");
-  const [showToolbar, setShowToolbar] = useState<boolean>(false);
-  const quillRef = useRef<any>(null);
+	const [editorHtml, setEditorHtml] = useState<string>(defaultContent);
+	const [theme, setTheme] = useState<string>("snow");
+	const [showToolbar, setShowToolbar] = useState<boolean>(false);
+	const quillRef = useRef<any>(null);
 
-  const modules = {
-    toolbar: [
-      [{ "header": "1" }, { "header": "2" }, { "blockquote": "blockquote" }],
-      ["bold", "italic", "link"],
-    ],
-    clipboard: {
-      matchVisual: false,
-    },
-  };
+	const modules = {
+		toolbar: [
+			[{ "header": "1" }, { "header": "2" }, { "blockquote": "blockquote" }],
+			["bold", "italic", "link"],
+		],
+		clipboard: {
+			matchVisual: false,
+		},
+	};
 
-  useEffect(() => {
-    const quill = quillRef.current;
+	useEffect(() => {
+		const quill = quillRef.current;
 
-    if (quill) {
-      quill.on("selection-change", handleSelectionChange);
-    }
+		if (quill) {
+			quill.on("selection-change", handleSelectionChange);
+		}
 
-    return () => {
-      if (quill) {
-        quill.off("selection-change", handleSelectionChange);
-      }
-    };
-  }, []);
+		return () => {
+			if (quill) {
+				quill.off("selection-change", handleSelectionChange);
+			}
+		};
+	}, []);
 
-  const handleChange = (html: string) => {
-    setEditorHtml(html);
-  };
+	const handleChange = (html: string) => {
+		setEditorHtml(html);
+	};
 
-  const handleSelectionChange = (range: any) => {
-    setShowToolbar(range && range.length > 0);
-  };
+	const handleSelectionChange = (range: any) => {
+		setShowToolbar(range && range.length > 0);
+	};
 
-  return (
-    <>
-      <ReactQuill
-        theme={theme}
-        onChange={handleChange}
-        value={editorHtml}
-        modules={modules}
-      />
-      {showToolbar && (
-        <div className="toolbar">
-        </div>
-      )}
-    </>
-  );
+	return (
+		<>
+			<ReactQuill
+				theme={theme}
+				onChange={handleChange}
+				value={editorHtml}
+				modules={modules}
+			/>
+			{showToolbar && (
+				<div className="toolbar">
+				</div>
+			)}
+		</>
+	);
 };
 
 export default Editor1;
