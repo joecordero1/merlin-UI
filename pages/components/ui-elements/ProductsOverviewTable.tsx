@@ -36,11 +36,11 @@ const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) =
 			selector: (row: Product) => (
 				<div className="w-10 h-10 relative">
 					<Image
-						src={prod.src ? prod.src : "/default-product.png"}
-						alt={prod.name}
-						width={48}
-						height={48}
-						className="avatar avatar-md avatar-rounded !mb-0 me-2"
+						src={row.imageUrl}
+						alt={row.productName}
+						fill={true}
+						style={{ objectFit: "cover" }}
+						className="rounded"
 					/>
 				</div>
 			),
