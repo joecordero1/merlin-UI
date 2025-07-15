@@ -86,7 +86,7 @@ class MerlinUITest(unittest.TestCase):
         cls.driver.quit()
     
     def test_title(self):
-        self.driver.get("http://localhost:3000")
+        self.driver.get("http://127.0.0.1:3000")
         self.assertIn("Merlin", self.driver.title)
 
 
