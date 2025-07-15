@@ -11,7 +11,7 @@ const Historial = () => {
 
   useEffect(() => {
     /*fetch("http://localhost:5020/api/merlin-recommender/chat")*/
-    fetch("http://localhost:4000/api/list-predictions")
+    fetch("http://localhost:4000/api/bert/list-predictions")
       .then((res) => res.json())
       .then((json) => setPredictions(json))
       .catch((err) => console.error("Error fetching predictions:", err));

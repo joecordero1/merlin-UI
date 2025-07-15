@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'storage.googleapis.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+      },
     ],
   },
 };

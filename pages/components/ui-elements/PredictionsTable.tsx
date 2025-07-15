@@ -5,6 +5,7 @@ import DataTable from 'react-data-table-component';
 export interface Prediccion {
     id: number;
     fecha: string;
+    modelo:string;
     participante: string;
     premioSugerido: string;
 }
@@ -32,6 +33,11 @@ const PredictionsTable: React.FC<Props> = ({ predicciones }) => {
             sortable: true,
         },
         {
+            name: 'Modelo',
+            selector: (row: Prediccion) => row.modelo,
+            sortable: true,
+        },
+        {
             name: 'Participante',
             selector: (row: Prediccion) => row.participante,
             sortable: true,
@@ -52,8 +58,6 @@ const PredictionsTable: React.FC<Props> = ({ predicciones }) => {
                 </button>
             ),
             ignoreRowClick: true,
-            allowOverflow: true,
-            button: true,
         }
 
     ];

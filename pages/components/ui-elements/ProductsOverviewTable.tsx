@@ -38,8 +38,8 @@ const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) =
           <Image
             src={row.imageUrl}
             alt={row.productName}
-            layout="fill"
-            objectFit="cover"
+            fill={true}
+            style={{ objectFit: "cover" }}
             className="rounded"
           />
         </div>
@@ -65,8 +65,6 @@ const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) =
         </div>
       ),
       ignoreRowClick: true,
-      allowOverflow: true,
-      button: true,
     },
   ];
 

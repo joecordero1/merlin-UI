@@ -77,12 +77,30 @@ export const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
       {filter === 'custom' && (
         <div className="flex gap-2 px-4 pb-2">
           <div>
-            <label className="block text-xs text-[#8c9097] dark:text-white/50">Inicio</label>
-            <input type="date" value={customStart} onChange={(e) => setCustomStart(e.target.value)} className="form-input text-xs w-full" />
+            <label htmlFor="custom-start" className="block text-xs text-[#8c9097] dark:text-white/50">
+              Inicio
+            </label>
+            <input
+              id="custom-start"
+              type="date"
+              value={customStart}
+              onChange={(e) => setCustomStart(e.target.value)}
+              className="form-input text-xs w-full"
+            />
+
           </div>
           <div>
-            <label className="block text-xs text-[#8c9097] dark:text-white/50">Fin</label>
-            <input type="date" value={customEnd} onChange={(e) => setCustomEnd(e.target.value)} className="form-input text-xs w-full" />
+            <label htmlFor="custom-end" className="block text-xs text-[#8c9097] dark:text-white/50">
+              Fin
+            </label>
+            <input
+              id="custom-end"
+              type="date"
+              value={customEnd}
+              onChange={(e) => setCustomEnd(e.target.value)}
+              className="form-input text-xs w-full"
+            />
+
           </div>
         </div>
       )}

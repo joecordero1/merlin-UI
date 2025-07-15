@@ -32,17 +32,17 @@ const MapsIcon = <i className="bx bx-map side-menu__icon"></i>
 
 const Icons = <i className="bx bx-store-alt side-menu__icon"></i>
 
-const badge = <span className="badge !bg-warning/10 !text-warning !py-[0.25rem] !px-[0.45rem] !text-[0.75em] ms-2">12</span>
+const badge = <span className="badge !bg-warning/10 !text-warning !py-[0.25rem] !px-[0.45rem] !text-[0.75em] ms-2">1</span>
 const badge1 = <span className="text-secondary text-[0.75em] rounded-sm !py-[0.25rem] !px-[0.45rem] badge !bg-secondary/10 ms-2">New</span>
 const badge2=<span className="text-danger text-[0.75em] rounded-sm badge !py-[0.25rem] !px-[0.45rem] !bg-danger/10 ms-2">Hot</span>
-const badge4 = <span className="text-success text-[0.75em] badge !py-[0.25rem] !px-[0.45rem] rounded-sm bg-success/10 ms-2">3</span>
+const badge4 = <span className="text-success text-[0.75em] badge !py-[0.25rem] !px-[0.45rem] rounded-sm bg-success/10 ms-2">2</span>
 
 export const MenuItems : any= [
     {
         menutitle: "MAIN",
 },
 
-            {icon: DashboardIcon, badgetxt: badge, title: 'Dashboards', type: "sub", active: false, children: [
+            {icon: DashboardIcon, badgetxt: badge4, title: 'Dashboards', type: "sub", active: false, children: [
                     {path: "/dashboards/modelo", type: "link", active: false, selected: false, title: "Modelo" },
                     {path: "/dashboards/historial", type: "link", active: false, selected: false, title: "Historial" },
                 ]
@@ -54,7 +54,6 @@ export const MenuItems : any= [
 },
 
             {icon: DashboardIcon, badgetxt: badge, title: 'Merlin', type: "sub", active: false, children: [
-                    {path: "/merlin", type: "link", active: false, selected: false, title: "Merlin" },
                     {path: "/merlinCatalogos", type: "link", active: false, selected: false, title: "Catalogos" },
                 ]
             },

@@ -1,0 +1,70 @@
+name: Run Selenium E2E Tests with Frontend and Backend
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install frontend dependencies
+        run: |
+          cd merlin-UI
+          npm install
+
+      - name: Run unit tests with coverage
+        run: |
+          cd merlin-UI
+          npm run test:coverage
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+          npm run build
+
+      - name: Start frontend and backend
+        run: |
+          cd backend && npm run start:prod &
+          cd merlin-UI && npm start &
+          sleep 15  # Espera a que ambos estén levantados
+
+      - name: Install Python Selenium
+        run: |
+          pip install selenium
+
+      - name: Run E2E Selenium Tests
+        run: |
+          python test_merlin_ui_e2e.py
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}  # solo si es repo privado
+          files: ./merlin-UI/coverage/lcov.info
+          fail_ci_if_error: true
