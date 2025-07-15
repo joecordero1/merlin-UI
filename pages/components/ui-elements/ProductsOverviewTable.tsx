@@ -31,42 +31,43 @@ const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) =
 	};
 
 	const columns = [
-		{
-			name: "Imagen",
-			selector: (row: Product) => (
-				<div className="w-10 h-10 relative">
-					<Image
-						src={row.imageUrl}
-						alt={row.productName}
-						fill={true}
-						style={{ objectFit: "cover" }}
-						className="rounded"
-					/>
-				</div>
-			),
-			sortable: false,
-		},
-		{
-			name: "Nombre",
-			selector: (row: Product) => row.productName,
-			sortable: true,
-		},
-		{
-			name: "Acciones",
-			cell: (row: Product) => (
-				<div className="flex flex-row items-center gap-2 text-sm">
-					<button
-						className="ti-btn ti-btn-wave h-[1.75rem] w-[1.75rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
-						title="Eliminar"
-						onClick={() => onDeleteProduct(row.id)}
-					>
-						<i className="ri-delete-bin-line"></i>
-					</button>
-				</div>
-			),
-			ignoreRowClick: true,
-		},
-	];
+    {
+      name: "Imagen",
+      cell: (row: Product) => (
+        <div className="w-10 h-10 relative">
+          <Image
+            src={row.imageUrl}
+            alt={row.productName}
+            fill={true}
+            style={{ objectFit: "cover" }}
+            className="rounded"
+          />
+        </div>
+      ),
+      sortable: false,
+    },
+    {
+      name: "Nombre",
+      selector: (row: Product) => row.productName,
+      sortable: true,
+    },
+    {
+      name: "Acciones",
+      cell: (row: Product) => (
+        <div className="flex flex-row items-center gap-2 text-sm">
+          <button
+            className="ti-btn ti-btn-wave h-[1.75rem] w-[1.75rem] bg-danger/10 text-danger hover:bg-danger hover:text-white hover:border-danger"
+            title="Eliminar"
+            onClick={() => onDeleteProduct(row.id)}
+          >
+            <i className="ri-delete-bin-line"></i>
+          </button>
+        </div>
+      ),
+      ignoreRowClick: true,
+    },
+  ];
+
 
 	return (
 		<div className="box">
