@@ -20,7 +20,7 @@ class MerlinUITest(unittest.TestCase):
         )
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
-        cls.base_url = "http://localhost:3000"
+        cls.base_url = "http://127.0.0.1:3000"
         cls.wait = WebDriverWait(cls.driver, 12)
         os.makedirs("screenshots", exist_ok=True)
 

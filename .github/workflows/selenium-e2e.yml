@@ -42,7 +42,7 @@ jobs:
 
       - name: Start frontend in background
         run: |
-          nohup npm start > frontend.log 2>&1 &
+          nohup npx next start -p 3000 -H 0.0.0.0 > frontend.log 2>&1 &
 
       - name: Esperar a que frontend esté disponible
         run: |
