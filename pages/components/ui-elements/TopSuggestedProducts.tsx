@@ -136,4 +136,4 @@ const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
 	);
 };
 
-export default TopSuggestedProducts
+export default TopSuggestedProducts;

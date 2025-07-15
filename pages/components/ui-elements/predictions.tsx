@@ -77,4 +77,6 @@ export const Predictions: React.FC<Props> = ({ model }) => {
 };
 
 Predictions.displayName = "Predictions";
-export default Predictions
+
+export default Predictions;
+
