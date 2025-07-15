@@ -5,14 +5,14 @@ import DataTable from "react-data-table-component";
 import Image from "next/image";
 
 interface Product {
-  id: number;
-  productName: string;
-  imageUrl: string;
+	id: number;
+	productName: string;
+	imageUrl: string;
 }
 
 interface Props {
-  products: Product[];
-  onDeleteProduct: (id: number) => void;
+	products: Product[];
+	onDeleteProduct: (id: number) => void;
 }
 
 const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) => {
@@ -76,7 +76,7 @@ const ProductsOverviewTable: React.FC<Props> = ({ products, onDeleteProduct }) =
 					onClick={() => setShowModal(true)}
 					className="ti-btn bg-primary text-white"
 				>
-          Guardar Catálogo
+					Guardar Catálogo
 				</button>
 			</div>
 
