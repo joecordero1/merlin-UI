@@ -1,6 +1,7 @@
 import unittest
 import os
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +10,11 @@ class MerlinUITest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome()
+        cls.driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.CHROME
+        )
+        cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
         cls.base_url = "http://localhost:3000"
         cls.wait = WebDriverWait(cls.driver, 12)
