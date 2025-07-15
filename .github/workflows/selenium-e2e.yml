@@ -1,4 +1,4 @@
-name: Run Selenium E2E Tests with Frontend
+name: Run Selenium E2E Tests
 
 on:
   push:
@@ -33,21 +33,37 @@ jobs:
           python-version: '3.11'
 
       - name: Install frontend dependencies
-        run: npm install
+        run: |
+          npm install
+
+      - name: Build frontend
+        run: |
+          npm run build
+
+      - name: Start frontend in background
+        run: |
+          nohup npm start > frontend.log 2>&1 &
+
+      - name: Esperar a que frontend esté disponible
+        run: |
+          for i in {1..15}; do
+            curl -s http://localhost:3000 && echo "Frontend listo" && exit 0
+            echo "Esperando frontend..."
+            sleep 5
+          done
+          echo "Frontend no respondió a tiempo" && exit 1
+
+      - name: Install Selenium for Python
+        run: |
+          pip install selenium
+
+      - name: Run E2E Tests
+        run: |
+          python test_merlin_ui_e2e.py
 
       - name: Run unit tests with coverage
-        run: npm run test:coverage
-
-      - name: Start frontend
         run: |
-          npm run start &
-          sleep 10  # espera a que levante el frontend
-
-      - name: Install Python Selenium
-        run: pip install selenium
-
-      - name: Run E2E Selenium Tests
-        run: python test_merlin_ui_e2e.py
+          npm run test:coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
