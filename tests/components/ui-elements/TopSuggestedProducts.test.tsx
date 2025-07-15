@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { TopSuggestedProducts } from "@/pages/components/ui-elements/TopSuggestedProducts";
+import TopSuggestedProducts from "@/pages/components/ui-elements/TopSuggestedProducts";
 
 const mockData = Array.from({ length: 10 }, (_, i) => ({
 	name: `Producto ${i + 1}`,
