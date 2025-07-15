@@ -4,9 +4,9 @@ import Pageheader from "@/shared/layout-components/page-header/pageheader";
 import Seo from "@/shared/layout-components/seo/seo";
 import Link from "next/link";
 import React, { Fragment, useState, useEffect } from "react";
-import { Predictions } from "@/pages/components/ui-elements/predictions";
-import { TopSuggestedProducts } from "@/pages/components/ui-elements/TopSuggestedProducts";
-import { TopAcceptedProducts } from "@/pages/components/ui-elements/TopAcceptedProducts";
+import Predictions from "@/pages/components/ui-elements/predictions";
+import TopSuggestedProducts from "@/pages/components/ui-elements/TopSuggestedProducts";
+import TopAcceptedProducts from "@/pages/components/ui-elements/TopAcceptedProducts";
 import InfoCard from "@/pages/components/ui-elements/InfoCard";
 
 const API = "http://localhost:4000/api";

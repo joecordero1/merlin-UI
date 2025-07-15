@@ -10,7 +10,7 @@ const filterOptions = [
 	{ label: "Personalizado", value: "custom" },
 ];
 interface Props { model: "bert" | "dnn"; }
-export const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
+const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
 	const [filter, setFilter] = useState("today");
 	const [products, setProducts1] = useState<any[]>([]);
 	const [products2, setProducts2] = useState<any[]>([]);
@@ -135,3 +135,5 @@ export const TopSuggestedProducts: React.FC<Props> = ({ model }) => {
 		</div>
 	);
 };
+
+export default TopSuggestedProducts

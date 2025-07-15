@@ -11,7 +11,7 @@ const filterOptions = [
 ];
 
 interface Props { model: "bert" | "dnn"; }
-export const TopAcceptedProducts: React.FC<Props> = ({ model }) => {
+const TopAcceptedProducts: React.FC<Props> = ({ model }) => {
 	const [filter, setFilter] = useState("today");
 	const [products, setProducts1] = useState<any[]>([]);
 	const [products2, setProducts2] = useState<any[]>([]);
@@ -136,3 +136,5 @@ export const TopAcceptedProducts: React.FC<Props> = ({ model }) => {
 		</div>
 	);
 };
+
+export default TopAcceptedProducts;
