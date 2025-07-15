@@ -1,7 +1,7 @@
 import unittest
 import os
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,9 +10,13 @@ class MerlinUITest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        chrome_options = Options()
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--headless')  # Opcional
         cls.driver = webdriver.Remote(
             command_executor='http://localhost:4444/wd/hub',
-            desired_capabilities=DesiredCapabilities.CHROME
+            options=chrome_options
         )
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
@@ -80,6 +84,10 @@ class MerlinUITest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
+    
+    def test_title(self):
+        self.driver.get("http://localhost:3000")
+        self.assertIn("Merlin", self.driver.title)
 
 
 if __name__ == "__main__":
