@@ -15,7 +15,7 @@ class MerlinUITest(unittest.TestCase):
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--headless')  # Opcional
         cls.driver = webdriver.Remote(
-            command_executor='http://localhost:4444/wd/hub',
+            command_executor='http://127.0.0.1:4444/wd/hub',
             options=chrome_options
         )
         cls.driver.implicitly_wait(10)
